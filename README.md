@@ -1,33 +1,19 @@
 # mstat
-embedded golang library for statistics storage, leverages sqlite3 as the backing
-store.  includes convenience methods to help with advanced statistics calculations.
+golang library for persisting statistics, provides a simple api for counters
+and logging.  also includes convenience methods to help with advanced statistics 
+calculations.
 
-originally, i had used redis as the backing store, but wanted something embedded,
-simple to manage, and optimized for my particular workflows so i wrote a key
-value library on top of sqlite3.
+originally, i used redis as the backing store, but wanted something embedded,
+simple to manage, and optimized for my particular workflows so i wrote this
+library on top of sqlite3.
 
 ## library usage
 
-### counters
+### Count(key, field, increment)
 
-counter(key, increment)
+`mstat.Count("game1", "1PTM", 1)`
+`mstat.Count("game1", "3PTA", 2)`
 
-###
+### AppendLog(key, field, val)
 
-add(key, incr) // add("1.1.2.3", 1) add("1.1.2.3", -1)
-add_set(key, field, incr)
-
-### integer based counters
-
-add(key, field, increment)
-get(key, field)
-getall(key)
-
-1PT, 2PT, 3PT, STL, TOV, BLK, OREB, DREB, AST, FOUL  
-
-### append log, timestamp, string
-
-append(key, field/timestamp, increment)
-play, "string"
-
-game, team, player, 
+`mstat.AppendLog("game1", "plays", "1PTM HOME 3")
