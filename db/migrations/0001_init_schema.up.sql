@@ -1,4 +1,4 @@
-create table if not exists stats(
+create table if not exists counters(
   id INTEGER NOT NULL PRIMARY KEY,
   key VARCHAR UNIQUE NOT NULL,
   val VARCHAR,
